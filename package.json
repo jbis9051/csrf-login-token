@@ -1,6 +1,6 @@
 {
   "name": "csurf-login-token",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CSRF token from login token middleware",
   "author": "Josh Brown",
   "license": "MIT",
