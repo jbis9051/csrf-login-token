@@ -24,10 +24,10 @@ function csurf_login_token(cookieName, options) {
 
     return (req, res, next) => {
         req.csrfToken = () => {
-            if (!req.cookie[cookieName]) {
+            if (!req.cookies[cookieName]) {
                 throw new Error('No login token found. Please check that the login token exists (which should be done anyway since its a login token).')
             }
-            return getHash(req.cookie[cookieName]);
+            return getHash(req.cookies[cookieName]);
         };
         if (!ignoreMethod[req.method] && !verify(cookieName, value, req)) {
             return next(createError(403, 'invalid csrf token', {
@@ -100,7 +100,7 @@ function verify(cookieName, value, req) {
     if (!submitToken) {
         return false;
     }
-    const loginToken = req.cookie[cookieName];
+    const loginToken = req.cookies[cookieName];
     if (!loginToken) {
         return false;
     }
